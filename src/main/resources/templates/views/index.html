@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+</head>
+<body>
+<img style="height: 500px;width: 500px;" alt="test" th:src="@{images/thymeleaf.png}"/>
+<h1 th:text="${host}">Hello World</h1>
+<a th:href="@{${#httpServletRequest.getContextPath()} + ${host}}">欢迎您</a>
+</body>
+</html>
