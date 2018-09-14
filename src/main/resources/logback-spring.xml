@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
-
+    <springProperty scope="context" name="logPath" source="demo.log.path"  defaultValue="/export/home/tomcat/logs"/>
     <contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator">
         <resetJUL>true</resetJUL>
     </contextListener>
@@ -12,9 +12,9 @@
     </appender>
 
     <appender name="all" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${bcp.log.path}/bcp-gateway-all.log</file>
+        <file>${logPath}/all.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${bcp.log.path}/bcp-gateway-all-%d{yyyy-MM-dd}.log</fileNamePattern>
+            <fileNamePattern>${logPath}/all-%d{yyyy-MM-dd}.log</fileNamePattern>
             <maxHistory>7</maxHistory>
         </rollingPolicy>
         <encoder charset="UTF-8">
@@ -22,14 +22,14 @@
         </encoder>
     </appender>
     <appender name="all-error" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${bcp.log.path}/bcp-gateway-all-error.log</file>
+        <file>${logPath}/all-error.log</file>
         <filter class="ch.qos.logback.classic.filter.LevelFilter">
             <level>ERROR</level>
             <onMatch>ACCEPT</onMatch>
             <onMismatch>DENY</onMismatch>
         </filter>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${bcp.log.path}/bcp-gateway-all-error-%d{yyyy-MM-dd}.log</fileNamePattern>
+            <fileNamePattern>${logPath}/all-error-%d{yyyy-MM-dd}.log</fileNamePattern>
             <maxHistory>7</maxHistory>
         </rollingPolicy>
         <encoder charset="UTF-8">
@@ -39,7 +39,7 @@
 
     <root level="info">
         <appender-ref ref="console"/>
-        <appender-ref ref="all-error"/>
+        <appender-ref ref="all"/>
     </root>
 
     <springProfile name="dev">
